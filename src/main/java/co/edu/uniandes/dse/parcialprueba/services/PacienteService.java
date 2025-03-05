@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import co.edu.uniandes.dse.parcialprueba.entities.PacienteEntity;
 import co.edu.uniandes.dse.parcialprueba.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.parcialprueba.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.parcialprueba.repositories.HistoriaClinicaRepository;
 import co.edu.uniandes.dse.parcialprueba.repositories.PacienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +17,6 @@ public class PacienteService {
     @Autowired
     PacienteRepository pacienteRepository;
 
-    @Autowired
-    HistoriaClinicaRepository historiaClinicaRepository;
 
     //Guardar un nuevo libro
 
@@ -35,7 +32,7 @@ public class PacienteService {
 
         }
 
-        if (!primerosTres.equals("311") || !primerosTres.equals("601")){
+        if (!primerosTres.equals("311") && !primerosTres.equals("601")){
 
             throw new IllegalOperationException("Número no válido");
 
