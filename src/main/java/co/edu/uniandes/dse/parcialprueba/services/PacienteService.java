@@ -9,6 +9,7 @@ import co.edu.uniandes.dse.parcialprueba.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.parcialprueba.repositories.PacienteRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -39,6 +40,38 @@ public class PacienteService {
         }
 
         return pacienteRepository.save(pacienteEntity);
+
+    }
+
+    @Transactional
+    public void asociarAcudiente(Long id1, Long id2) throws EntityNotFoundException , IllegalOperationException{
+
+        Optional<PacienteEntity> pacienteBase= pacienteRepository.findById(id1);
+
+        if(pacienteBase.isEmpty()){
+
+            throw new EntityNotFoundException("Paciente base no encontrado");
+
+        }
+
+        PacienteEntity baseEncontrado= pacienteBase.get();
+
+        Optional<PacienteEntity> pacienteAcudiente= pacienteRepository.findById(id2);
+
+        if(pacienteAcudiente.isEmpty()){
+
+            throw new EntityNotFoundException("Paciente acudiente no encontrado");
+
+        }
+
+        PacienteEntity acudienteEncontrado= pacienteAcudiente.get();
+
+        if(acudienteEncontrado.getHistoriasClinicas().isEmpty()){
+
+            throw new IllegalOperationException("Acudiente debe tener historia clinica");
+        }
+
+        baseEncontrado.setAcudiente(acudienteEncontrado);
 
     }
 
