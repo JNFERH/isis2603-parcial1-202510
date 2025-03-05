@@ -17,7 +17,7 @@ public class PacienteEntity extends BaseEntity {
 
     private String nombre;
     private String correo;
-    private Integer telefono;
+    private String telefono;
 
     @PodamExclude
     @OneToOne

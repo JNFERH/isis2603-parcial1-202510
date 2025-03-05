@@ -26,7 +26,20 @@ public class PacienteService {
     @Transactional
     public PacienteEntity createPaciente(PacienteEntity pacienteEntity) throws EntityNotFoundException, IllegalOperationException{
 
-        
+        String primerosTres=pacienteEntity.getTelefono().substring(0,2);
+        String completo=pacienteEntity.getTelefono();
+
+        if((int)completo.length() != 11 ){
+
+            throw new IllegalOperationException("Número no válido");
+
+        }
+
+        if (!primerosTres.equals("311") || !primerosTres.equals("601")){
+
+            throw new IllegalOperationException("Número no válido");
+
+        }
 
         return pacienteRepository.save(pacienteEntity);
 
