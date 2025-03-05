@@ -8,7 +8,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Data
 @Entity
-public class HistoriaClinicaEntity {
+public class HistoriaClinicaEntity extends BaseEntity {
 
     private String diagnostico;
     private String tratamiento;

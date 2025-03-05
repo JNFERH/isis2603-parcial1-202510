@@ -11,6 +11,6 @@ import co.edu.uniandes.dse.parcialprueba.entities.PacienteEntity;
 @Repository
 public interface HistoriaClinicaRepository extends JpaRepository<HistoriaClinicaEntity, Long> {
 
-    List<HistoriaClinicaEntity> findByPaciente(PacienteEntity paciente);
+    List<HistoriaClinicaEntity> findByDiagnostico(PacienteEntity paciente);
 
 }
